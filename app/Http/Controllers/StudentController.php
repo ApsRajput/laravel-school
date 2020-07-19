@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('students/create');
     }
 
     /**
@@ -36,7 +36,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'phone' => 'required|numeric',
+            'password' => 'required|max:255',
+        ]);
+        $student = Student::create($storeData);
+
+        return redirect('/students')->with('completed', 'Student has been saved!');
     }
 
     /**
@@ -58,7 +66,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('students/edit', compact('student'));
     }
 
     /**
@@ -70,7 +79,14 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'phone' => 'required|numeric',
+            'password' => 'required|max:255',
+        ]);
+        Student::whereId($id)->update($updateData);
+        return redirect('/students')->with('completed', 'Student has been updated');
     }
 
     /**
