@@ -6,8 +6,42 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Laravel 7/6 CRUD App Example</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+   
+   <style>
+      .top-right {
+         position: absolute;
+         right: 10px;
+         top: 18px;
+      }
+      .links > a {
+            color: #636b6f;
+            padding: 0 25px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+      }
+   </style>
    </head>
    <body>
+   
+      <div class="flex-center position-ref full-height">
+         <div class="top-right links">
+               @if (Route::has('login'))
+                  @auth
+                     <a href="{{ url('/home') }}">Home</a>
+                  @else
+                     <a href="{{ route('login') }}">Login</a>
+
+                     @if (Route::has('register'))
+                           <a href="{{ route('register') }}">Register</a>
+                     @endif
+                  @endauth
+               @endif
+               <a href="{{ url('/students') }}">Students</a>
+         </div>
+      </div>
       <div class="container">
          @yield('content')
       </div>
