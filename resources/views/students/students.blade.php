@@ -34,6 +34,7 @@
             <td>{{$students->phone}}</td>
             <td>{{$students->password}}</td>
             <td class="text-center">
+                <a href="{{ route('students.show', $students->id)}}" class="btn btn-primary btn-sm">View</a>
                 <a href="{{ route('students.edit', $students->id)}}" class="btn btn-primary btn-sm">Edit</a>
                 <form action="{{ route('students.destroy', $students->id)}}" method="post" style="display: inline-block">
                     @csrf
