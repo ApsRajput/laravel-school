@@ -13,12 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::group(array('middleware' => 'auth'), function()
+{
+    Route::get('/', function () {
+        return redirect('students');
+    });
+
+    // Student
+    Route::resource('students', 'StudentController');
+    // Teacher
+    Route::resource('teachers', 'TeacherController');
 });
 
-// Student
-Route::resource('students', 'StudentController');
 
-// Teacher
-Route::resource('teachers', 'TeacherController');
+Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
