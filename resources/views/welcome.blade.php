@@ -77,7 +77,9 @@
                         @endif
                     @endauth
                 @endif
+                <a href="{{ url('/') }}">Home</a>
                 <a href="{{ url('/students') }}">Students</a>
+                <a href="{{ url('/teachers') }}">Teachers</a>
             </div>
 
             <div class="content">
