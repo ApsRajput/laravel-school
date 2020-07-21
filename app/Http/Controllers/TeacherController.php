@@ -15,7 +15,7 @@ class TeacherController extends Controller
     public function index()
     {
         $teacher = Teacher::all();
-        return render('teachers/teachers', compact('teacher'));
+        return view('teachers/teachers', compact('teacher'));
     }
 
     /**
@@ -25,7 +25,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return render('/teachers/create');
+        return view('/teachers/create');
     }
 
     /**
@@ -45,7 +45,7 @@ class TeacherController extends Controller
 
         $teacher = Teacher::create($storeData);
 
-        return render('/teachers')->with('Added!!', 'Teacher added successfully');
+        return redirect('/teachers')->with('Added!!', 'Teacher added successfully');
     }
 
     /**
@@ -57,7 +57,7 @@ class TeacherController extends Controller
     public function show($id)
     {
         $teacher = Teacher::FindOrFail($id);
-        return render('/teachers/show', compact('teacher'));
+        return view('/teachers/show', compact('teacher'));
     }
 
     /**
@@ -69,7 +69,7 @@ class TeacherController extends Controller
     public function edit($id)
     {
         $teacher = Teacher::FindOrFail($id);
-        return render('/teachers/show', compact('teacher'));
+        return view('/teachers/edit', compact('teacher'));
     }
 
     /**
@@ -85,7 +85,7 @@ class TeacherController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|max:255',
             'phone' => 'required|numeric',
-            'password' => 'required|max:255',
+            'subject' => 'required|max:255',
         ]);
         Teacher::whereId($id)->update($updateData);
         return redirect('/teachers')->with('completed', 'Teacher has been updated');
@@ -101,6 +101,6 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::FindOrFail($id);
         $teacher->delete();
-        return render('/teachers/show')->with('Deleted', 'Teacher deleted successfully!');
+        return redirect('/teachers')->with('Deleted', 'Teacher deleted successfully!');
     }
 }
