@@ -17,8 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Student
-Route::resource('students', 'StudentController');
+Route::group(array('middleware' => 'auth'), function()
+{
+    // Student
+    Route::resource('students', 'StudentController');
+    // Teacher
+    Route::resource('teachers', 'TeacherController');
+});
 
-// Teacher
-Route::resource('teachers', 'TeacherController');
+
+Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
