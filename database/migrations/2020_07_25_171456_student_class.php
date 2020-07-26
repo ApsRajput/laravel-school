@@ -16,6 +16,8 @@ class StudentClass extends Migration
         Schema::create('class', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('room_number');
+            $table->string('class_teacher');
+            $table->string('number_of_students');
             $table->timestamps();
         });
     }
