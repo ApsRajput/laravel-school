@@ -33,6 +33,8 @@
                @if (Route::has('login'))
                   @auth
                      <a href="{{ url('/home') }}">Home</a>
+                     <a href="{{ url('/students') }}">Students</a>
+                     <a href="{{ url('/teachers') }}">Teachers</a>
                   @else
                      <a href="{{ route('login') }}">Login</a>
 
@@ -42,8 +44,6 @@
                   @endauth
                @endif
                <a href="{{ url('/') }}">Home</a>
-               <a href="{{ url('/students') }}">Students</a>
-               <a href="{{ url('/teachers') }}">Teachers</a>
          </div>
       </div>
       <div class="container">

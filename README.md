@@ -16,4 +16,5 @@ Build with laravel framework for self practice of new tools and testing.
 ## Features
 1. Student Log and Profile
 2. Teacher Log and Profile
-3. Admin Panel to control all activities.
+3. Class Log and Table
+4. Admin Panel to control all activities.
